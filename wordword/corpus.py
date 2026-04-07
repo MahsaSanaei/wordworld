@@ -1,5 +1,6 @@
 from collections import Counter
 import os
+import spacy
 
 
 class Corpus:
@@ -15,8 +16,8 @@ class Corpus:
     PUNC = """!()-[]{};:```\\`'//'"``\`,<>./?@#$%^&*_~1234567890=\n\t|"""
 
     def __init__(self, data):
-        if os.path.isfile("data") and "data".endswith(".txt"):
-            with open ("data", "r") as f:
+        if os.path.isfile(data) and data.endswith(".txt"):
+            with open (data, "r") as f:
                 self.raw_data = f.read()
         else:
             self.raw_data = data
@@ -25,9 +26,14 @@ class Corpus:
         for ele in raww_data:
             if ele in self.PUNC:
                 raww_data = raww_data.replace(ele, " ")
-        words = raww_data.split()
+        self.total_words = raww_data.split()
         #words = [word for word in words if word not in self.STOPWORDS]    #stopword removal
-        self.words_freq = Counter(words)
+        self.words_freq = Counter(self.total_words)
+        self.unique_words = set(self.total_words)
+
+        nlp = spacy.load("en_core_web_sm")
+        doc = nlp(self.raw_data)
+        self.sentences = [sent.text for sent in doc.sents]
 
     def most_common(self, n): 
         """
@@ -46,3 +52,58 @@ class Corpus:
         ordered_word_freq = self.words_freq.most_common()
         ordered_word_freq = list(reversed(ordered_word_freq))
         return ordered_word_freq[:n]
+    
+    def lexical_diversity(self):
+        """
+        Returns float 0-1: unique words / total words (TTR)
+        
+        :param self
+        """
+        return len(self.unique_words) / len(self.total_words)
+    
+    def avg_word_length(self):
+        """
+        Returns the average number of characters per word
+        
+        :param self
+        """
+        character_count = sum(len(list(word)) for word in self.total_words)
+        return character_count / len(self.total_words)
+    
+    def avg_sentence_length(self):
+        """
+        Returns the average number of words per sentence
+
+        :param self
+        """
+        return (len(self.total_words) / len(self.sentences))
+    
+    def rarity_score(self, word):
+        """
+        Returns 0-1 float: how rare a specific word is in this corpus
+        
+        :param self
+        :param word
+        """      
+        total = sum(self.words_freq.values())
+        word = word.lower()
+        count = self.words_freq[word]
+        frequency = count / total if total > 0 else 0
+        rarity = 1 - frequency
+        return rarity
+    
+    def fingerprint(self):
+        """
+        Returns summary dict with all key statistics combined
+
+        :param self
+        """
+        return {
+            'total_words': len(self.total_words),
+            'unique_words': len(self.unique_words),
+            'lexical_diversity': self.lexical_diversity(),
+            'avg_word_length': self.avg_word_length(),
+            'avg_sentence_len': self.avg_sentence_length(),
+            'top_5_words': self.most_common(5),
+            '3_rarest_words': self.rarest_words(3),
+        }
