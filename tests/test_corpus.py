@@ -4,8 +4,7 @@ sys.path.append('.')
 from wordword import Corpus
 
 
-class TestInspectorMethods(unittest.TestCase):
-    
+class TestCorpusMethods(unittest.TestCase):
     def setUp(self):
         self.corp = Corpus("To be or not to be, That is the question.")
 
