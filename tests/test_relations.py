@@ -1,7 +1,7 @@
 import unittest
 import sys
 sys.path.append('.')
-from wordword import WordGraph
+from wordworld import WordGraph
 
 
 class TestWordGraphMethods(unittest.TestCase):

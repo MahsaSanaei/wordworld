@@ -1,7 +1,7 @@
 import unittest
 import sys
 sys.path.append('.')
-from wordword import inspect, count_syllables, classify_chars, is_palindrome
+from wordworld import inspect, count_syllables, classify_chars, is_palindrome
 
 
 class TestInspectorMethods(unittest.TestCase):

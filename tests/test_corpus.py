@@ -1,7 +1,7 @@
 import unittest
 import sys
 sys.path.append('.')
-from wordword import Corpus
+from wordworld import Corpus
 
 
 class TestCorpusMethods(unittest.TestCase):

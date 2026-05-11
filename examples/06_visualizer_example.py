@@ -1,6 +1,6 @@
 import sys
 sys.path.append('.')
-from wordword import plot_word_frequency, plot_personality_radar, plot_sentence_length_distribution, compare_texts_visually
+from wordworld import plot_word_frequency, plot_personality_radar, plot_sentence_length_distribution, compare_texts_visually
 
 
 text = "Hello, I love you so much. According to my feelings to you, I always support you."

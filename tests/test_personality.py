@@ -2,7 +2,7 @@ import unittest
 import re
 import sys
 sys.path.append('.')
-from wordword import TextPersonality, score_personality
+from wordworld import TextPersonality, score_personality
 
 
 class TestPersonalityhMethods(unittest.TestCase):

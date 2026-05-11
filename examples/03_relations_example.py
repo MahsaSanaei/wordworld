@@ -1,6 +1,6 @@
 import sys
 sys.path.append('.')
-from wordword import WordGraph
+from wordworld import WordGraph
 
 wg = WordGraph()
 wg.add_rhyme('cat', 'bat')

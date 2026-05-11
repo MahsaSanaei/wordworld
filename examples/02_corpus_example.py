@@ -1,6 +1,6 @@
 import sys
 sys.path.append('.')
-from wordword import Corpus
+from wordworld import Corpus
 
 corp = Corpus("Hello world. How are you? I am fine.")
 print(corp.most_common(2))
