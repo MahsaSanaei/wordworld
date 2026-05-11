@@ -1,0 +1,2 @@
+[project.scripts]
+wordworld = "wordword.cli:cli"
