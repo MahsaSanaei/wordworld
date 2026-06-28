@@ -1,4 +1,4 @@
-# wordworld (A Living Word Intelligence Library)
+# WordWorld (A Living Word Intelligence Library)
 
 ## 1. Project Overview
 wordworld is a Python library that lets you inspect, analyze, compare, and visualize text and words at many levels — from individual characters up to full documents. It is designed for beginner programmers who want to build something real and publishable while learning core Python engineering skills step by step.
@@ -47,3 +47,24 @@ wordworld/
 | **examples/** | All stages | Runnable demo scripts for users |
 
 “This project is an evolving library. Feel free to explore the modules and contribute as you learn!”
+
+
+### 3.1 Stage 1: Word Inspector
+This module contains pure functions (no classes) that take a single word string and return facts about it. This is intentionally the simplest possible design pattern to get started.
+
+| Function / Method | Description |
+| :--- | :--- |
+| `inspect(word)` | **Master function** — Returns a dictionary containing all analyzed properties of the word. |
+| `count_syllables(word)` | Returns the integer count of syllables using vowel-group detection. |
+| `classify_chars(word)` | Returns a dictionary with counts for uppercase letters, lowercase letters, digits, and special characters. |
+| `is_palindrome(word)` | Returns `True` or `False` — determines if the word reads the same forwards and backwards. |
+
+#### Usage Example
+```python
+from wordworld.inspector import inspect
+
+data = inspect("Python3")
+print(data)
+# Output example:
+# {'syllables': 2, 'chars': {'upper': 1, 'lower': 5, 'digits': 1, ...}, 'palindrome': False}
+```
