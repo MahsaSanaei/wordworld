@@ -95,7 +95,32 @@ c.fingerprint()
 ```
 
 ### 3.3. Stage 3: Word Relationship Map
+The WordGraph class builds a graph where words are nodes and relationships are edges.
 
+| Function / Method | Description |
+| :--- | :--- |
+| `WordGraph()` | Constructor — creates an empty networkx Graph |
+| `.add_rhyme(word1, word2)` | Adds an edge with relation='rhymes_with' |
+| `.add_synonym(word1, word2)` | Adds an edge with relation='synonym' |
+| `.auto_connect_by_rhyme(wo rds)` | Scans a word list, auto-adds rhyme edges |
+| `.auto_connect_by_edit_dis tance()` | Auto-adds edges for words differing by ≤N chars |
+| `.neighbors(word)` | Returns list of all words connected to given word |
+| `.word_path(start, end)` | BFS shortest path between two words |
+| `.most_connected(n)` | Returns top-n most connected (highest degree) words |
+| `.edit_distance(w1, w2)` | Returns integer Levenshtein distance between two words |
+
+#### Usage Example
+```python
+from wordworld.relations import WordGraph
+
+wg = WordGraph()
+words = ["cat","bat","rat"]
+wg.neighbors("cat")
+wg.edit_distance("cat", "cat")
+# Output example:
+# ['bat', 'rat', 'hat']
+# 0
+```
 
 ### 3.4. Stage 4: Text Personality Scorer
 
