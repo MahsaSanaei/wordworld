@@ -170,3 +170,14 @@ p = score_personality(text)
 plot_personality_radar(text, title="Personality Radar"):
 # Output example:
 ```
+
+### 3.7. Stage 7: Command-Line Interface
+The cli.py module wraps all previous modules into a terminal command-line tool using the click library. After completing pyproject.toml, users can run wordworld directly from their terminal.
+
+| Function / Method | Description |
+| :--- | :--- |
+| `wordworld info <word>` | Prints inspect() results formatted for terminal |
+| `wordworld analyze <file.txt>` | Prints corpus fingerprint for a text file |
+| `wordworld personality <file.txt>` | Prints the personality bar-chart report |
+| `wordworld history <word>` | Prints etymology + definitions from API |
+| `wordworld compare <f1.txt> <f2.txt>` | Compares personality of two files side by side |
