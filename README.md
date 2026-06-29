@@ -123,7 +123,29 @@ wg.edit_distance("cat", "cat")
 ```
 
 ### 3.4. Stage 4: Text Personality Scorer
+This module scores five personality dimensions of any text — formality, complexity, emotionality, rhythm, and richness — using purely statistical methods.
 
+| Function / Method | Description |
+| :--- | :--- |
+| `TextPersonality` | Dataclass with 5 float fields (0.0–1.0 each) |
+| `.dominant_trait()` | Returns the name of the highest-scoring trait |
+| `.profile_label()` | Returns human label like 'Academic/Legal', 'Poetic' |
+| `.__str__()` | Prints a bar-chart style personality report to terminal |
+| `score_personality(text)` | Main function — returns a TextPersonality for any string |
+
+#### Usage Example
+```python
+from wordworld.personality import score_personality
+from wordworld.corpus import Corpus
+
+text = Corpus(text)
+p = score_personality(text) 
+print(p.formality)
+print(p.dominant_trait())
+# Output example:
+# 0.21
+# 'rhythm'
+```
 
 ### 3.5. Stage 5: Word History & Etymology
 
