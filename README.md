@@ -86,10 +86,10 @@ The Corpus class wraps a block of text (string or file path) and exposes statist
 
 #### Usage Example
 ```python
-from wordworld.corpus import fingerprint
+from wordworld.corpus import Corpus
 
 c = Corpus("To be or not to be, That is the question.")
-c.fingerprint()
+print(c.fingerprint())
 # Output example:
 # {'total_words': 10, 'unique_words':9, 'lexical_diversity': 0.90, 'avg_word_length': 3.2, 'avg_sentence_len': 10.2, 'top_5_words': [('be',2),...]}
 ```
@@ -115,8 +115,8 @@ from wordworld.relations import WordGraph
 
 wg = WordGraph()
 words = ["cat","bat","rat"]
-wg.neighbors("cat")
-wg.edit_distance("cat", "cat")
+print(wg.neighbors("cat"))
+print(wg.edit_distance("cat", "cat"))
 # Output example:
 # ['bat', 'rat', 'hat']
 # 0
@@ -151,6 +151,22 @@ print(p.dominant_trait())
 
 
 ### 3.6. Stage 6: Visual Word Explorer
+This module contains pure plotting functions. Each function takes text (string or Corpus) and produces a matplotlib chart.
 
+| Function / Method | Description |
+| :--- | :--- |
+| `plot_word_frequency(text, top_n)` | Horizontal bar chart of top-N most frequent words |
+| `plot_personality_radar(te xt, title)` | Polar/radar chart of the 5 personality dimensions |
+| `plot_sentence_length_dist ribution(text)` | Histogram + line chart showing rhythm over time |
+| `compare_texts_visually(te xts_dict)` | Side-by-side radar charts for multiple texts/authors |
 
-### 3.7. Stage 7: Command-Line Interface
+#### Usage Example
+```python
+from wordworld.personality import score_personality
+from wordworld.visualizer import plot_personality_radar
+
+text = Corpus(text)
+p = score_personality(text) 
+plot_personality_radar(text, title="Personality Radar"):
+# Output example:
+```
