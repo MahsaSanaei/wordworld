@@ -49,7 +49,7 @@ wordworld/
 “This project is an evolving library. Feel free to explore the modules and contribute as you learn!”
 
 
-### 3.1 Stage 1: Word Inspector
+### 3.1. Stage 1: Word Inspector
 This module contains pure functions (no classes) that take a single word string and return facts about it. This is intentionally the simplest possible design pattern to get started.
 
 | Function / Method | Description |
@@ -66,5 +66,44 @@ from wordworld.inspector import inspect
 data = inspect("Python3")
 print(data)
 # Output example:
-# {'syllables': 2, 'chars': {'upper': 1, 'lower': 5, 'digits': 1, ...}, 'palindrome': False}
+# {'word': Python3, 'length':7, 'syllable_count': 2, 'char_types': {'uppercase': 1, 'lowercase': 5, 'digits': 1, ...}, 'is_palindrome': False, ...}
 ```
+
+
+### 3.2. Stage 2: Corpus Analyzer
+The Corpus class wraps a block of text (string or file path) and exposes statistical methods.
+
+| Function / Method | Description |
+| :--- | :--- |
+| `Corpus(source)` | Constructor — accepts a raw string or a file path |
+| `most_common(n)` | Returns top-n (word, count) pairs as a list of tuples |
+| `rarest_words(n)` | Returns the n least frequent words in the corpus |
+| `lexical_diversity()` | Returns float 0–1: unique words / total words (TTR) |
+| `avg_word_length()` | Returns the average number of characters per word |
+| `avg_sentence_length()` | Returns the average number of words per sentence |
+| `rarity_score(word)` | Returns 0–1 float: how rare a specific word is in this corpus |
+| `fingerprint()` | Returns summary dict with all key statistics combined |
+
+#### Usage Example
+```python
+from wordworld.corpus import fingerprint
+
+c = Corpus("To be or not to be, That is the question.")
+c.fingerprint()
+# Output example:
+# {'total_words': 10, 'unique_words':9, 'lexical_diversity': 0.90, 'avg_word_length': 3.2, 'avg_sentence_len': 10.2, 'top_5_words': [('be',2),...]}
+```
+
+### 3.3. Stage 3: Word Relationship Map
+
+
+### 3.4. Stage 4: Text Personality Scorer
+
+
+### 3.5. Stage 5: Word History & Etymology
+
+
+### 3.6. Stage 6: Visual Word Explorer
+
+
+### 3.7. Stage 7: Command-Line Interface
