@@ -1,7 +1,7 @@
 # WordWorld (A Living Word Intelligence Library)
 
 ## 1. Project Overview
-wordworld is a Python library that lets you inspect, analyze, compare, and visualize text and words at many levels — from individual characters up to full documents. It is designed for beginner programmers who want to build something real and publishable while learning core Python engineering skills step by step.
+WordWorld is a Python library that lets you inspect, analyze, compare, and visualize text and words at many levels — from individual characters up to full documents. It is designed for beginner programmers who want to build something real and publishable while learning core Python engineering skills step by step.
 
 ## 2. Project Structure
 Every file in wordworld has exactly one responsibility. Here is the complete directory layout:
@@ -148,7 +148,26 @@ print(p.dominant_trait())
 ```
 
 ### 3.5. Stage 5: Word History & Etymology
+This module calls the free Dictionary API (no key required) to fetch word definitions, etymology, audio, and synonyms. Results are cached locally so repeated calls are instant.
 
+| Function / Method | Description |
+| :--- | :--- |
+| `word_history(word)` | Fetches full history dict for a word; caches to ~/.wordworld_cache/ |
+| `compare_words_history(words)` | Fetches multiple words and returns comparison summary dict |
+
+#### Usage Example
+```python
+from wordworld.timemachine import word_history
+
+result = ww.word_history("serendipity")
+if result:
+    data = result[0] 
+    print(f"Word: {data.get('word')}")
+    print(f"Phonetic: {data.get('phonetic')}") 
+# Output example:
+# serendipity
+# /ˌsɛ.ɹən.ˈdɪ.pɪ.ti/
+```
 
 ### 3.6. Stage 6: Visual Word Explorer
 This module contains pure plotting functions. Each function takes text (string or Corpus) and produces a matplotlib chart.
@@ -167,7 +186,7 @@ from wordworld.visualizer import plot_personality_radar
 
 text = Corpus(text)
 p = score_personality(text) 
-plot_personality_radar(text, title="Personality Radar"):
+plot_personality_radar(text, title="Personality Radar")
 # Output example:
 ```
 
